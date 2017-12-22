@@ -1,10 +1,9 @@
 
-
-1. [对json字符串格式化输出](#)
+1. [对json字符串格式化输出](#对json字符串格式化输出)
+1. [列举可用数据驱动](#列举可用数据驱动)
 1. [](#)
-1. [](#)
 
-### 对json字符串格式化输出
+## 对json字符串格式化输出
  ```java
     /**
      * 对json字符串格式化输出
@@ -66,30 +65,19 @@
     }
 ```
 
+## 列举可用数据驱动
 ```java
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.util.Enumeration;
 
-```
-
-
-
-
-```java
-
-```
-
-
-```java
-
-```
-
-
-```java
-
-```
-
-
-```java
-
+    private static void listDrivers() {
+        Enumeration driverList = DriverManager.getDrivers();
+        while (driverList.hasMoreElements()) {
+            Driver driverClass = (Driver) driverList.nextElement();
+            System.out.println(" dirver:" + driverClass.getClass().getName());
+        }
+    }
 ```
 
 
