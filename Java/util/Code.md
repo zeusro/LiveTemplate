@@ -1,7 +1,10 @@
 
 1. [对json字符串格式化输出](#对json字符串格式化输出)
 1. [列举可用数据驱动](#列举可用数据驱动)
-1. [](#)
+1. [复制文本到剪贴板](#复制文本到剪贴板)
+1. []()
+1. []()
+1. []()
 
 ## 对json字符串格式化输出
  ```java
@@ -66,6 +69,7 @@
 ```
 
 ## 列举可用数据驱动
+
 ```java
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -80,6 +84,16 @@ import java.util.Enumeration;
     }
 ```
 
+## 复制文本到剪贴板
+
+```java
+Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+String content = m.scaleImage(a, b.value());
+Transferable trandata = new StringSelection(content);
+clipboard.setContents(trandata, null);
+```
+
+## 
 
 ```java
 
