@@ -87,10 +87,12 @@ import java.util.Enumeration;
 ## 复制文本到剪贴板
 
 ```java
-Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-String content = m.scaleImage(a, b.value());
-Transferable trandata = new StringSelection(content);
-clipboard.setContents(trandata, null);
+private void copyToClipboard(String content) {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable trandata = new StringSelection(content);
+        clipboard.setContents(trandata, null);
+        out.println("responseJson已复制到剪贴板");
+    }
 ```
 
 ## 
