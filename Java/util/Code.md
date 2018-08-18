@@ -1,10 +1,26 @@
 
+1. []()
+1. []()
+1. []()
+1. [格式化为数据库支持的时间格式](#格式化为数据库支持的时间格式)
 1. [对json字符串格式化输出](#对json字符串格式化输出)
 1. [列举可用数据驱动](#列举可用数据驱动)
 1. [复制文本到剪贴板](#复制文本到剪贴板)
-1. []()
-1. []()
-1. []()
+
+ 
+## 
+
+```java
+
+```
+
+
+## 格式化为数据库支持的时间格式
+
+```java
+final java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+sdf.format(new Date());
+```
 
 ## 对json字符串格式化输出
  ```java
@@ -93,10 +109,4 @@ private void copyToClipboard(String content) {
         clipboard.setContents(trandata, null);
         out.println("responseJson已复制到剪贴板");
     }
-```
-
-## 
-
-```java
-
 ```
