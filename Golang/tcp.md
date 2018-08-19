@@ -1,4 +1,7 @@
 
+
+转自[golang实现带有心跳检测的tcp长连接](https://my.oschina.net/sharelinux/blog/699725)
+
 ```golang
 package main
 
