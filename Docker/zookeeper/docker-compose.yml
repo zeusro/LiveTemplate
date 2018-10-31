@@ -1,0 +1,61 @@
+zookeeper:
+  image: 'zookeeper:3.4.11'
+  restart: always
+  hostname: zookeeper-master
+  environment:
+    - LANG=C.UTF-8
+    - JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/jre
+    - ZOO_USER=zookeeper
+    - ZOO_CONF_DIR=/conf
+    - ZOO_DATA_DIR=/data
+    - ZOO_DATA_LOG_DIR=/datalog
+    - ZOO_PORT=2181
+    - ZOO_TICK_TIME=2000
+    - ZOO_INIT_LIMIT=5
+    - ZOO_SYNC_LIMIT=2
+    - ZOO_MAX_CLIENT_CNXNS=60
+    - ZOOCFGDIR=/conf
+  expose:
+    - 3888/tcp
+    - 2888/tcp
+    - 2181/tcp
+  memswap_limit: 0
+  labels:
+    aliyun.scale: '1'
+  shm_size: 0
+  memswap_reservation: 0
+  volumes:
+    - /datalog
+    - /data
+  kernel_memory: 0
+  mem_limit: 0  
+
+zookeeper1:
+  image: zookeeper:3.4.11
+  restart: always
+  hostname: zookeeper1
+  ports:
+    - 2181:2181
+  environment:
+    ZOO_MY_ID: 1
+    ZOO_SERVERS: server.1=0.0.0.0:2888:3888 server.2=zookeeper2:2888:3888 server.3=zookeeper3:2888:3888
+
+zookeeper2:
+  image: zookeeper:3.4.11
+  restart: always
+  hostname: zookeeper2
+  ports:
+    - 2182:2181
+  environment:
+    ZOO_MY_ID: 2
+    ZOO_SERVERS: server.1=zookeeper1:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zookeeper3:2888:3888
+
+zookeeper3:
+  image: zookeeper:3.4.11
+  restart: always
+  hostname: zookeeper3
+  ports:
+    - 2183:2181
+  environment:
+    ZOO_MY_ID: 3
+    ZOO_SERVERS: server.1=zookeeper1:2888:3888 server.2=zookeeper2:2888:3888 server.3=0.0.0.0:2888:3888
