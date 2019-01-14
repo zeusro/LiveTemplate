@@ -1,0 +1,11 @@
+version: '2.2'
+services:
+    redis: 
+        image: redis
+        ports: 
+        - "12667:6379"
+        entrypoint:
+        - redis-server 
+        - --appendonly yes
+        volumes:
+        - "/Volumes/D/temp/redis/dir:/data"
