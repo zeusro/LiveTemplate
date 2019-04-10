@@ -4,7 +4,7 @@
 1. [Aspose.Cells操作excel](#Aspose.Cells操作excel)
 1. [防止死锁的运行异步方法](#防止死锁的运行异步方法)
 1. [导出C#生成的公私钥](#导出C#生成的公私钥)
-1. [](#)
+1. [将时间字符串转为Json时间](#将时间字符串转为Json时间)
 1. [](#)
 
 ## 追加文本内容
@@ -525,6 +525,23 @@ Task.Run( () => asyncMethod()).Wait();
 1. [C# Export Private/Public RSA key from RSACryptoServiceProvider to PEM string](https://stackoverflow.com/questions/23734792/c-sharp-export-private-public-rsa-key-from-rsacryptoserviceprovider-to-pem-strin)
 1. [通过 JSEncrypt 实现在线 JavaScript RSA 非对称加密解密](https://blog.zhengxianjun.com/online-tool/rsa/)
 
+
+
+## 将时间字符串转为Json时间
+```csharp
+  /// <summary>
+        /// 将时间字符串转为Json时间
+        /// </summary>
+        private static string ConvertDateStringToJsonDate(Match m)
+        {
+            string result = string.Empty;
+            DateTime dt = DateTime.Parse(m.Groups[0].Value);
+            dt = dt.ToUniversalTime();
+            TimeSpan ts = dt - DateTime.Parse("1970-01-01");
+            result = string.Format("\\/Date({0}+0800)\\/", ts.TotalMilliseconds);
+            return result;
+        }
+```
 
 ## 
 ```csharp
