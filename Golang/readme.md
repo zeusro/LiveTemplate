@@ -101,3 +101,10 @@ import (
 )
 ```
 _操作其实是引入该包，而不直接使用包里面的函数，而是调用了该包里面的init函数。
+
+## Race Detector 竞态分析
+
+go test -v -race
+
+http://tonybai.com/2015/08/25/go-debugging-profiling-optimization/
+
