@@ -9,6 +9,10 @@ https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depen
 
 https://blog.csdn.net/jiankunking/article/details/78544327
 
+## 数组切片
+
+![image](RRH0.png)
+
 ## 数据类型
 
 ```
