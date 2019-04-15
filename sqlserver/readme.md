@@ -60,6 +60,7 @@ alter database dbname set  online
 2. [将数据库设置为单用户模式](https://docs.microsoft.com/zh-cn/sql/relational-databases/databases/set-a-database-to-single-user-mode)
 3. [sqlserver单用户模式无法改成多用户模式](http://www.wangjingfeng.com/491.html)
 4. [sqlserver独占数据库](http://www.bkjia.com/Sql_Server/490634.html)
+1. [Creating, detaching, re-attaching, and fixing a SUSPECT database](https://www.sqlskills.com/blogs/paul/creating-detaching-re-attaching-and-fixing-a-suspect-database/)
 
 
 ## 每日增量备份
