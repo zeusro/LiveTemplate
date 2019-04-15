@@ -108,20 +108,6 @@ go test -v -race
 
 https://tonybai.com/2015/08/25/go-debugging-profiling-optimization/
 
-## 锁
-
-golang中sync包实现了两种锁Mutex （互斥锁）和RWMutex（读写锁），
-
-其中RWMutex是基于Mutex实现的，只读锁的实现使用类似引用计数器的功能．
-
-
-
-## 并发模型
-
-参考:
-1. [Golang并发模型](http://xuchongfeng.github.io/2016/03/24/Golang%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/)
-2. [Golang CSP并发模型](https://www.jianshu.com/p/36e246c6153d)
-
 
 ## 开启逃逸分析
 
