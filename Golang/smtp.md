@@ -228,3 +228,6 @@ func SendMailUsingTLS(addr string, auth smtp.Auth, from string,
 }
 
 ```
+
+参考:
+[SMTP 之 Go 调用示例](https://help.aliyun.com/document_detail/29457.html?spm=a2c4g.11186623.6.613.1bf92649pCkcJh#h2--go-1-9-2-unencrypted-connection-login-2)
