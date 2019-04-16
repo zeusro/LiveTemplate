@@ -104,7 +104,7 @@ func (a *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
 
 ```
 
-
+验证改为
 
 auth := LoginAuth(user, password)
 
