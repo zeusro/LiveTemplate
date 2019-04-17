@@ -25,10 +25,3 @@ composer selfupdate
 ## 参考链接:
 
 1. [Mac中Composer的安装和使用](https://www.jianshu.com/p/fd1b53df3f4b)
-1. []()
-1. []()
-1. []()
-1. []()
-1. []()
-
-
