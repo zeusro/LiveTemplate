@@ -1,13 +1,34 @@
 
-## 官方包还原
+## 安装golang
 
-完整安装包见
+```bash
 
-https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on
+installgo (){
 
-`golang.org/x/tools`的依赖包可以用`https://github.com/golang/tools`替换
+brew install go
+cat << EOF >>  ~/.zshrc    
+export GOPATH=$HOME/go
+EOF
 
-https://blog.csdn.net/jiankunking/article/details/78544327
+echo $GOPATH
+cd $GOPATH/src
+mkdir -p golang.org/x/
+cd golang.org/x/
+git clone https://github.com/golang/tools.git
+git clone https://github.com/golang/sys.git
+git clone https://github.com/golang/net.git
+git clone https://github.com/golang/time.git
+git clone https://github.com/golang/lint.git
+
+# https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on
+go get -u -v github.com/mdempsky/gocode
+go get -u -v  github.com/ramya-rao-a/go-outline
+go get -u -v  github.com/acroca/go-symbols
+go get -u -v  github.com/stamblerre/gocode
+go get -u -v  github.com/sqs/goreturns
+
+}
+```
 
 ## 数组切片
 
