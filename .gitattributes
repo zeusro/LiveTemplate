@@ -1,1 +1,3 @@
-* linguist-documentation
+*.md    linguist-documentation
+*.java  linguist-vendored
+*.cs    linguist-vendored
