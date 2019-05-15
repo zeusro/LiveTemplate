@@ -1,6 +1,5 @@
 # 用vs code调试golang项目
 
-
 ## 准备工作
 1. 安装vs code(我用的是Windows 1.10.2版),安装对应golang拓展**
 1. 假设gopath是D:\GOPATH\src,我们在src下面有2个项目,一个是go-demo,另外一个是a.我们用vs code打开D:\GOPATH\src这个目录(不打开具体项目的那个文件夹是为了方便切换调试的目标)
@@ -113,8 +112,18 @@
 
 本来想写条件断点和命中次数调试的,发现目前golang的插件都不支持,作罢.
 
+
+## 其他问题
+
+### 启动调试器失败 
+
+
+Failed to continue: Check the debug console for details.
+
+Failed to continue: "Cannot find Delve debugger. Install from https://github.com/derekparker/delve & ensure it is in your Go tools path, "GOPATH/bin" or "PATH"."
+
+常见于升级golang版本后出现,删了dlv之后重新安装即可
+
 ## 参考链接:
 1. [Debugging](https://code.visualstudio.com/docs/editor/debugging)
-1. []()
-1. []()
 1. []()
