@@ -19,3 +19,9 @@ ts-loader helps Webpack compile your TypeScript code using the TypeScript’s st
 - [ ] 压缩混淆,css,js
 - [ ] 编译ts文件
 - [ ] 语法检查
+
+参考
+
+https://juejin.im/post/5d614dc96fb9a06ae3726b3e
+
+https://segmentfault.com/a/1190000018777683#articleHeader7
