@@ -1,0 +1,32 @@
+# 放置于项目根目录
+allprojects {
+    apply plugin: 'maven'
+    group = 'com.zeusro'
+    version = '1.0.0'
+}
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+}
