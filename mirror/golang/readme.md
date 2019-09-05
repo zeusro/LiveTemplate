@@ -3,8 +3,10 @@
     export GOPROXY=https://goproxy.io
 
 
-## go 
+## go  1.13
 
 ```bash
+# 私有包
+GOPRIVATE=*.corp.example.com,rsc.io/private
 go env -w GOPROXY=https://goproxy.cn,direct
 ```
