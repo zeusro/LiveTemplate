@@ -1,69 +1,159 @@
-## Linux启动顺序
+
+## 日志
+
+journalctl --since="2018-12-11 10:10:30"
+
+## 查看包依赖深度
+
+yum deplist soft_name
+
+修改默认命令别名
 
 ```
-Linux 系统主要启动步骤:
-   1. 读取 MBR 的信息,启动 Boot Manager
-             Windows 使用 NTLDR 作为 Boot Manager,如果您的系统中安装多个
-             版本的 Windows,您就需要在 NTLDR 中选择您要进入的系统。
-             Linux 通常使用功能强大,配置灵活的 GRUB 作为 Boot Manager。
-   2. 加载系统内核,启动 init 进程
-             init 进程是 Linux 的根进程,所有的系统进程都是它的子进程。
-   3. init 进程读取 /etc/inittab 文件中的信息,并进入预设的运行级别,
-      按顺序运行该运行级别对应文件夹下的脚本。脚本通常以 start 参数启
-      动,并指向一个系统中的程序。
-             通常情况下, /etc/rcS.d/ 目录下的启动脚本首先被执行,然后是
-             /etc/rcN.d/ 目录。例如您设定的运行级别为 3,那么它对应的启动
-             目录为 /etc/rc3.d/ 。
-   4. 根据 /etc/rcS.d/ 文件夹中对应的脚本启动 Xwindow 服务器 xorg
-             Xwindow 为 Linux 下的图形用户界面系统。
-   5. 启动登录管理器,等待用户登录
-             Ubuntu 系统默认使用 GDM 作为登录管理器,您在登录管理器界面中
-             输入用户名和密码后,便可以登录系统。(您可以在 /etc/rc3.d/
-             文件夹中找到一个名为 S13gdm 的链接) 安装sysv-rc-conf
+## 系统为了防止出错,对一些命令设置了别名,这个时候要手动修改
+vi ~/.bashrc
+#alias cp='cp -i'
+# 注释之后就可以愉快地 cp -rf 了
+```
+
+## path
+
+```
+# 当前用户
+ /etc/profile
+
+# Linux系统
+~/.bash_profile
+```
+
+## 防火墙
+
+
+```
+firewall-cmd --version  # 查看版本
+firewall-cmd --help     # 查看帮助
+
+# 查看设置：
+firewall-cmd --state  # 显示状态
+firewall-cmd --get-active-zones  # 查看区域信息
+firewall-cmd --get-zone-of-interface=eth0  # 查看指定接口所属区域
+firewall-cmd --panic-on  # 拒绝所有包
+firewall-cmd --panic-off  # 取消拒绝状态
+firewall-cmd --query-panic  # 查看是否拒绝
+
+firewall-cmd --reload # 更新防火墙规则
+firewall-cmd --complete-reload
+
+# 查看所有打开的端口：
+firewall-cmd --zone=dmz --list-ports
+
+# 加入一个端口到区域：
+firewall-cmd --zone=dmz --add-port=8080/tcp
+# 若要永久生效方法同上
+
+# 打开一个服务，类似于将端口可视化，服务需要在配置文件中添加，/etc/firewalld 目录下有services文件夹，这个不详细说了，详情参考文档
+firewall-cmd --zone=work --add-service=smtp
+
+# 移除服务
+firewall-cmd --zone=work --remove-service=smtp
+
+# 显示支持的区域列表
+firewall-cmd --get-zones
+
+# 设置为家庭区域
+firewall-cmd --set-default-zone=home
+
+# 查看当前区域
+firewall-cmd --get-active-zones
+
+# 设置当前区域的接口
+firewall-cmd --get-zone-of-interface=enp03s
+
+# 显示所有公共区域（public）
+firewall-cmd --zone=public --list-all
+
+```
+
+https://wangchujiang.com/linux-command/c/firewall-cmd.html
+
+## 升级内核
+
+### 装内核
+
+```bash
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install -y kernel-ml
+# 改引导
+# awk -F\' '$1=="menuentry " {print $2}' /etc/grub2.cfg
+sed -i 's/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g' /etc/default/grub
+grub2-mkconfig -o /boot/grub2/grub.cfg
+reboot
+uname -sr
+
 ```
 
 
-## centos
+## 自定义服务自启
 
-在`/etc/init.d/`目录下添加文件,然后on启动就行
 
-使用chkconfig管理
-
-```
-chkconfig shadowsocks off
-chkconfig shadowsocks --del
+nano /usr/lib/systemd/user/shadowsocks.service
 
 ```
+[Unit]
+Description=shadowsocks
+Documentation=https://github.com/shadowsocks/shadowsocks
+After=network.target remote-fs.target nss-lookup.target
 
 
-http://man.linuxde.net/chkconfig
+[Service]
+Type=forking
+ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json -d start
+ExecReload=/usr/bin/ssserver -c /etc/shadowsocks.json -d restart
+ExecStop=sudo ssserver -d stop
+PrivateTmp=true
 
-## centos7
+[Install]
+WantedBy=multi-user.target
 
-
-
-修改 /etc/rc.local
 
 ```
-
-chmod +x /opt/script/autostart.sh
-su - user -c '/opt/script/autostart.sh'
-打开/etc/rc.d/rc.local文件，在末尾增加如下内容
-
-#在centos7中，/etc/rc.d/rc.local的权限被降低了，所以需要执行如下命令赋予其可执行权限
-chmod +x /etc/rc.d/rc.local
-
+然后
+```bash
+systemctl daemon-reload
+systemctl enable /usr/lib/systemd/user/shadowsocks.service
 ```
 
-通过Systemctl管理service
- 
- 
- 参考
- 
- [CentOS 7添加开机启动服务/脚本](https://blog.csdn.net/wang123459/article/details/79063703)
- [systemctl命令](http://man.linuxde.net/systemctl)
- 
+其他命令
 
+```
+systemctl start shadowsocks.service
+systemctl restart shadowsocks.service
+
+systemctl status shadowsocks.service
+```
+
+https://blog.csdn.net/lishuoboy/article/details/89925957
+
+## 开机source
+
+修改这个文件
+
+~/.bashrc
+
+
+
+
+## bbr
+```
+modprobe tcp_bbr
+echo "tcp_bbr" >> /etc/modules-load.d/modules.conf
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+sysctl net.ipv4.tcp_available_congestion_control
+sysctl net.ipv4.tcp_congestion_control
+```
 
     
 ## 安装IPVS管理工具
