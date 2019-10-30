@@ -2,6 +2,7 @@
 
 ## 服务管理
 
+```bash
 service --status-all
 
 
@@ -9,6 +10,7 @@ Usage: /etc/init.d/mysql start|stop|restart|reload|force-reload|status
 
 Usage: service < option > | --status-all | [ service_name [ command | --full-restart ] ]
 
+```
 
 [Ubuntu Service系统服务说明与使用方法](http://www.mikewootc.com/wiki/linux/usage/ubuntu_service_usage.html)
 
