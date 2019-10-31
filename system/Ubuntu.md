@@ -39,6 +39,12 @@ sudo apt-get dist-upgrade  -y
 do-release-upgrade
 ```
 
+## 升级到 Ubuntu18 之后 ssh服务不可用
+
+执行sshd -t
+
+之后排查配置即可,一般是 ssh 配置过老导致
+
 参考:
 [如何将Ubuntu升级到18.04最新版](https://cloud.tencent.com/developer/article/1174343)
 
