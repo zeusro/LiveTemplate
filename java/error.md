@@ -17,3 +17,18 @@ Establishing SSL connection without server's identity verification is not recomm
 出现这个问题我也很懵逼A->B->C
 
 A用了C的方法,但是提示报错,最后我只能在A的build.gradle里面显示依赖C,这个bug很恶心.
+
+
+## xml 找不到
+
+从maven切换到gradle之后发现运行时有些xml找不到,结果发现有些狗逼在生成mapper的时候直接原目录生成.
+
+解决方案:
+在xml所在目录的build.gradle 加入
+
+```
+
+sourceSets.main.resources.srcDirs += ["src/main/java"]
+sourceSets.main.resources.includes = ["**/*.xml"]
+
+```
