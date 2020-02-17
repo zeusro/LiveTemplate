@@ -1,6 +1,10 @@
 
 ## golang交叉编译技巧
 
+**注意** 有变 
+
+[WindowsCrossCompiling](https://github.com/golang/go/wiki/WindowsCrossCompiling)
+
 ### windows
 - 切换到window64编译环境
 ```
