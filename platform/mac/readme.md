@@ -73,7 +73,7 @@ mkdir -p golang.org/x/
 cd golang.org/x/
 git clone git@github.com:golang/tools.git
 git clone git@github.com:golang/sys.git
-git clone git@github.com/golang/net.git
+git clone git@github.com:golang/net.git
 git clone git@github.com:golang/time.git
 git clone git@github.com:golang/lint.git
 git clone git@github.com:golang/sync.git
@@ -112,7 +112,7 @@ updatego(){
     cd cmd/dlv
     go install
     //golang
-    x=$GOPATH/src/golang.org/x/
+    x=$GOPATH/src/golang.org/x
     cd $x/tools
     git pull
     cd $x/tools/cmd/guru
@@ -138,12 +138,18 @@ updatego(){
 ```
 
  需要更新的工具有
+  gocode
+  gopkgs
+  go-outline
+  go-symbols
+  guru
   gorename
   dlv
   gocode-gomod
   gogetdoc
   goimports
   golint
+  gopls
 等
 
 ## 修改host破解迅雷版权校验
