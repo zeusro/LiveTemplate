@@ -100,11 +100,6 @@ cd $GOPATH/src/github.com
 gayhub=$GOPATH/src/github.com
 # https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on
 
-go get -u -v github.com/mdempsky/gocode
-go get -u -v  github.com/ramya-rao-a/go-outline
-go get -u -v  github.com/acroca/go-symbols
-go get -u -v  github.com/stamblerre/gocode
-
 cd $gayhub
 git clone git@github.com:sqs/goreturns.git sqs/goreturns && cd $gayhub/sqs/goreturns && go install
 # go get -u -v  github.com/sqs/goreturns
@@ -118,7 +113,7 @@ git clone git@github.com:zmb3/gogetdoc.git zmb3/gogetdoc && cd $gayhub/zmb3/goge
 # go get -v github.com/zmb3/gogetdoc
 
 cd $gayhub
-git clone git@github.com:stamblerre/gocode.git  && cd $gayhub/stamblerre/gocode && go install
+git clone git@github.com:stamblerre/gocode.git  && cd $gayhub/stamblerre/gocode && go install && go build  && cp gocode ~/go/bin/gocode-gomod
 
 # git clone -b bingo https://github.com/saibing/tools.git
 # cd tools/cmd/gopls
