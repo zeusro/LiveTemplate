@@ -19,7 +19,8 @@ source ~/.zshrc
 brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
 
 
-brew install  yarn gradle mpv wget kubernetes-cli maven node telnet git-lfs iproute2mac
+brew install  yarn gradle mpv wget maven node telnet git-lfs iproute2mac
+# cloud native
 brew install kubernetes-cli  kubectx
 brew cask install java
 }
@@ -28,10 +29,11 @@ brew cask install java
 zsh (){
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cd ~/.oh-my-zsh/custom/plugins
-#zsh-autosuggestions
-git clone git@github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-#zsh-syntax-highlighting
-git clone git@github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/zsh-autosuggestions.rb
+
+#zsh-autosuggestions 仓库已失效
+# git clone git@github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 
 source ~/.zshrc
 
@@ -57,43 +59,66 @@ updatebrew(){
 
 ## 安装升级go
 
-```
+```bash
 
 
 installgo (){
 
 brew install go
-cat << EOF >>  ~/.zshrc    
-export GOPATH=$HOME/go
-EOF
 
+cat << EOF >>  ~/.zshrc
+export GOPATH=$HOME/go
+export GOPROXY=https://goproxy.io
+EOF
+source ~/.zshrc
+
+car << EOF >> ~/.bash_profile
+export GOPATH=$HOME/go
+export GOPROXY=https://goproxy.io
+EOF
+source ~/.bash_profile
 echo $GOPATH
-cd $GOPATH/src
-mkdir -p golang.org/x/
-cd golang.org/x/
+mkdir -p $GOPATH/src
+mkdir -p $GOPATH/src/golang.org/x/
+cd $GOPATH/src/golang.org/x/
+xgo=$GOPATH/src/golang.org/x/
 git clone git@github.com:golang/tools.git
+cd $xgo/tools/cmd/goimports && go install
+cd $xgo/tools/gopls && go install
 git clone git@github.com:golang/sys.git
 git clone git@github.com:golang/net.git
 git clone git@github.com:golang/time.git
 git clone git@github.com:golang/lint.git
+cd $xgo/lint/golint && go install
 git clone git@github.com:golang/sync.git
+git clone git@github.com:golang/mod.git
+git clone git@github.com:golang/xerrors.git
 
+
+
+cd $GOPATH/src/github.com
+gayhub=$GOPATH/src/github.com
 # https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on
+
 go get -u -v github.com/mdempsky/gocode
 go get -u -v  github.com/ramya-rao-a/go-outline
 go get -u -v  github.com/acroca/go-symbols
 go get -u -v  github.com/stamblerre/gocode
-go get -u -v  github.com/sqs/goreturns
-go get -u -v  github.com/go-delve/delve/cmd/dlv
 
-# 接着需要修改~/.bash_profile,配置3个变量
-# export GOPATH=~/go
-# export GOBIN=$GOPATH/bin
-# export GOROOT=/usr/local/Cellar/go/1.12.4/libexec
+cd $gayhub
+git clone git@github.com:sqs/goreturns.git sqs/goreturns && cd $gayhub/sqs/goreturns && go install
+# go get -u -v  github.com/sqs/goreturns
 
-go get -v golang.org/x/tools/cmd/gopls
-go get -v golang.org/x/tools/cmd/goimports
-go get -v github.com/zmb3/gogetdoc
+cd $gayhub
+git clone git@github.com:go-delve/delve.git go-delve/delve && cd $gayhub/go-delve/delve/cmd/dlv && go install
+# go get -u -v  github.com/go-delve/delve/cmd/dlv
+
+cd $gayhub
+git clone git@github.com:zmb3/gogetdoc.git zmb3/gogetdoc && cd $gayhub/zmb3/gogetdoc && go install
+# go get -v github.com/zmb3/gogetdoc
+
+cd $gayhub
+git clone git@github.com:stamblerre/gocode.git  && cd $gayhub/stamblerre/gocode && go install
 
 # git clone -b bingo https://github.com/saibing/tools.git
 # cd tools/cmd/gopls
@@ -138,18 +163,10 @@ updatego(){
 ```
 
  需要更新的工具有
-  gocode
   gopkgs
-  go-outline
-  go-symbols
-  guru
-  gorename
-  dlv
   gocode-gomod
   gogetdoc
-  goimports
   golint
-  gopls
 等
 
 ## 修改host破解迅雷版权校验
@@ -157,13 +174,15 @@ updatego(){
 ```bash
 # sudo vi /etc/hosts
 
-127.0.0.1 hub5btmain.sandai.net 
-127.0.0.1 hub5emu.sandai.net 
+127.0.0.1 hub5btmain.sandai.net
+127.0.0.1 hub5emu.sandai.net
 127.0.0.1 upgrade.xl9.xunlei.com
 ```
 
 
-## 参考：
+## 参考
+
+cat EOF追加与覆盖
 
 http://www.361way.com/cat-eof-cover-append/4298.html
 
