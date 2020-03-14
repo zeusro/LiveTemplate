@@ -17,3 +17,12 @@ sudo systemctl start docker
 sudo systemctl enable docker
 
 ```
+
+## docker-compose
+
+```bash
+docker-compose rm --all &&
+ docker-compose pull &&
+ docker-compose build --no-cache &&
+ docker-compose up -d --force-recreate &&
+```
