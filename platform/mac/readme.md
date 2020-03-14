@@ -1,5 +1,13 @@
 
-# mac装机
+## 截屏
+
+command+shift+3 三个键按下则抓取/截取全屏……
+
+command+shift+4 然后用鼠标框选则抓取该区域的截图……
+
+command+shift+4 然后按空格则抓取软件窗口。截图会自动保存到桌面。
+
+## mac装机
 
 ```bash
 
