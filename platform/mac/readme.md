@@ -80,7 +80,7 @@ export GOPROXY=https://goproxy.io
 EOF
 source ~/.zshrc
 
-car << EOF >> ~/.bash_profile
+cat << EOF >> ~/.bash_profile
 export GOPATH=$HOME/go
 export GOPROXY=https://goproxy.io
 EOF
@@ -182,6 +182,20 @@ updatego(){
 127.0.0.1 upgrade.xl9.xunlei.com
 ```
 
+
+
+## 安装Composer
+
+```bash
+curl -sS https://getcomposer.org/installer | php
+php composer.phar --version
+mv composer.phar /usr/local/bin/composer
+composer selfupdate
+```
+
+## 参考链接:
+
+1. [Mac中Composer的安装和使用](https://www.jianshu.com/p/fd1b53df3f4b)
 
 ## 参考
 
