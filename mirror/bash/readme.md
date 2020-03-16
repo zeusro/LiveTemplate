@@ -17,7 +17,7 @@ bash 加速其实有个误区，不是你加代理就能代理，而且你调用
 
 [Windows](win.md)
 
-参考链接：
+## 参考链接：
 1. [让终端走代理的几种方法](https://blog.fazero.me/2015/09/15/%E8%AE%A9%E7%BB%88%E7%AB%AF%E8%B5%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/)
 1. [windows终端命令行下如何使用代理？](https://github.com/shadowsocks/shadowsocks-windows/issues/1489)
 1. [命令行走代理的便捷方式](https://juejin.im/post/5e127308e51d4541360ac518)
