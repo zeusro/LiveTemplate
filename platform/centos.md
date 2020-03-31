@@ -80,6 +80,8 @@ https://wangchujiang.com/linux-command/c/firewall-cmd.html
 
 ### 装内核
 
+[update_centos](update_centos.sh)
+
 ```bash
 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
@@ -90,7 +92,6 @@ sed -i 's/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g' /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
 reboot
 uname -sr
-
 ```
 
 
