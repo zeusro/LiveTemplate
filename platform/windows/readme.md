@@ -1,9 +1,7 @@
 
-
-
 ## 进程相关
 
-```
+```dos
 netstat -ano | findstr 80
 tasklist | findstr 2000 
 
