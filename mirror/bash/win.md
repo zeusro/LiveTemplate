@@ -14,3 +14,4 @@ set https_proxy=http://127.0.0.1:1080
 
 ## 参考链接
 1. [windows终端翻墙，简易方式](https://gist.github.com/dreamlu/cf7cbc0b8329ac145fa44342d6a1c01d)
+1. [windows终端命令行下如何使用代理？](https://github.com/shadowsocks/shadowsocks-windows/issues/1489)
