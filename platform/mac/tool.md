@@ -1,8 +1,10 @@
 
 ## 允许mac安装任意来源的 app
+
 ```bash
 sudo spctl --master-disable
 ```
+
 然后在安全性与隐私-通用那里,点击高级,输入密码解锁以允许修改配置,点击任意来源就行
 
 ## Alfred3
@@ -22,8 +24,11 @@ sudo spctl --master-disable
 ## Iterm2
 
     在profiles-Keys那里设置
+
     右移一个词： opt + 右 send escape sequence f
+
     左移一个词： opt + 左 send escape sequence b
+
     cmd+k 清除屏幕
     
 
