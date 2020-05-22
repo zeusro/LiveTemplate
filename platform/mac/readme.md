@@ -1,4 +1,7 @@
 
+
+[Mac 命令行下编辑常用的快捷键](http://notes.11ten.net/mac-command-line-editing-commonly-used-shortcut-keys.html)
+
 ## 截屏
 
 command+shift+3 三个键按下则抓取/截取全屏……
@@ -160,7 +163,7 @@ updatego(){
     git pull
     go get -v golang.org/x/tools/cmd/goimports
     go get -v golang.org/x/tools/cmd/gopls
-    
+
 }
 
 ```
@@ -181,8 +184,6 @@ updatego(){
 127.0.0.1 hub5emu.sandai.net
 127.0.0.1 upgrade.xl9.xunlei.com
 ```
-
-
 
 ## 安装Composer
 
@@ -205,3 +206,10 @@ http://www.361way.com/cat-eof-cover-append/4298.html
 
 
 brew uninstall --force tomcat
+
+
+## 其他
+
+    #设置文件可执行
+    chmod a+x /usr/local/bin/fly
+
