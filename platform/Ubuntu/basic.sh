@@ -1,0 +1,1 @@
+apt-get install -y software-properties-common git gcc make 
