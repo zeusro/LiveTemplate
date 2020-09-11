@@ -1,6 +1,8 @@
 
     export GOPROXY=https://mirrors.aliyun.com/goproxy/
     export GOPROXY=https://goproxy.io
+    export GOPROXY=https://goproxy.cn/
+    
 
 
 ## go  1.13
