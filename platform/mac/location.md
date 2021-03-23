@@ -1,4 +1,7 @@
+## docker 配置位置
 
+     ~/.docker/daemon.json
+    
 ## bin
 
     /usr/local/bin
