@@ -10,6 +10,10 @@ command+shift+4 然后用鼠标框选则抓取该区域的截图……
 
 command+shift+4 然后按空格则抓取软件窗口。截图会自动保存到桌面。
 
+## 清除密码策略
+
+    pwpolicy -clearaccountpolicies
+
 ## mac装机
 
 ```bash
