@@ -72,7 +72,3 @@ go env
 ## zsh
 
 ~/.zshrc
-
-##  docker 位置
-
-~/.docker/daemon.json
