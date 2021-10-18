@@ -140,7 +140,96 @@ https://tonybai.com/2015/08/25/go-debugging-profiling-optimization/
 
     go run -gcflags '-m -l' escape.go
 
+## 一些面试题
 
+```go
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	//SetMapPointer()
+	//MultiTrueCase()
+	//MultiDefer()
+	AppendArray()
+}
+
+type Human struct {
+	Sex string
+}
+
+func SetMapPointer() {
+	m := make(map[string]*Human)
+	l := []Human{{Sex: "男"}, {Sex: "女"}}
+	i := 0
+	for _, v := range l {
+		key := strconv.FormatInt(int64(i), 10)
+		// 这一行代码的问题是把同一个指针赋予了字典中的对象
+		// 导致最后字典中所有的 value 都是 l 中最后的那个元素 ：{Sex: "女"}
+		m[key] = &v
+		i = i + 1
+	}
+	fmt.Printf("+%v \n", m)
+	// +map[0:0xc000096220 1:0xc000096220]
+}
+
+//MultiTrueCase select 不会按照任何规则或者优先级选择到达的channel。
+func MultiTrueCase() {
+	b1 := make(chan bool, 1)
+	b2 := make(chan bool, 1)
+	b2 <- true
+	b1 <- true
+
+	select {
+	case <-b1:
+		fmt.Println("b1")
+	case <-b2:
+		panic("ddd")
+	}
+}
+
+type Robot interface {
+	Say(string) string
+}
+type MiRobot struct {
+}
+
+//Say 无法通过编译，不可寻址
+//func (r *MiRobot) Say(ddd string) (result string)  {
+//	return
+//}
+
+func (r MiRobot) Say(ddd string) (result string) {
+	return
+}
+
+func TestInterface() {
+	// https://www.jianshu.com/p/d1a9bbd0ae36
+	// https://juejin.cn/post/6963476381728702501
+	var robot Robot = MiRobot{}
+	robot.Say("ddd")
+}
+
+func MultiDefer() {
+	defer func() { fmt.Println("1") }()
+	defer func() { fmt.Println("2") }()
+	panic("panic MultiDefer")
+	//2
+	//1
+	//panic: panic MultiDefer
+}
+
+func AppendArray() {
+	array := make([]int, 5)
+	array = append(array, 1, 2)
+	fmt.Println(array)
+	//[0 0 0 0 0 1 2]
+}
+
+```
 
 参考链接:
 1. [golang中sync.RWMutex和sync.Mutex区别](https://blog.csdn.net/chenbaoke/article/details/41957725)
