@@ -1,0 +1,67 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: mutate-example
+webhooks:
+  - name: mutate.example.com
+    clientConfig:
+      service:
+        name: my-webhook-service
+        namespace: default
+        path: "/mutate"
+      caBundle: <ca-bundle>  # Replace with actual CA bundle
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+    admissionReviewVersions: ["v1"]
+    sideEffects: None
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: validate-example
+webhooks:
+  - name: validate.example.com
+    clientConfig:
+      service:
+        name: my-webhook-service
+        namespace: default
+        path: "/validate"
+      caBundle: <ca-bundle>  # Replace with actual CA bundle
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+    admissionReviewVersions: ["v1"]
+    sideEffects: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-webhook-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-webhook-server
+  template:
+    metadata:
+      labels:
+        app: my-webhook-server
+    spec:
+      containers:
+        - name: webhook-server
+          image: <your-docker-image>
+          ports:
+            - containerPort: 443
+          volumeMounts:
+            - mountPath: /etc/webhook/certs
+              name: webhook-certs
+              readOnly: true
+      volumes:
+        - name: webhook-certs
+          secret:
+            secretName: webhook-server-cert
