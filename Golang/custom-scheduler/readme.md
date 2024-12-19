@@ -23,3 +23,21 @@ Kubernetes 调度器插件通过配置 Scheduling Framework 接口来扩展功�
               - name: CustomScheduler
     ```
 1. 将自定义调度器部署为一个 Pod，使用配置文件启动调度器服务。
+
+有些版本注册的方式可能略有不同：
+```go
+// 自定义插件注册表
+	registry := runtime.Registry{
+		customplugin.Name: customplugin.New, // 注册插件
+	}
+
+	// 创建调度器命令
+	command := app.NewSchedulerCommand(
+		app.WithPlugin(registry), // 使用注册表加载插件
+	)
+
+	// 运行调度器
+	if err := command.Execute(); err != nil {
+		panic(err)
+	}
+```
