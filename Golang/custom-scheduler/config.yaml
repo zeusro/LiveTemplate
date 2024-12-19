@@ -1,0 +1,46 @@
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+clientConnection:
+  kubeconfig: "/etc/kubernetes/kubeconfig"  # 配置 kubeconfig 文件路径
+  qps: 50                                  # 设置 API Server 的 QPS
+  burst: 100                               # 设置 API Server 的最大突发请求数
+leaderElection:
+  leaderElect: true                        # 启用领导选举
+  leaseDurationSeconds: 15                 # 租约持续时间（秒）
+  renewDeadlineSeconds: 10                 # 租约续期时间（秒）
+  retryPeriodSeconds: 2                   # 重试周期（秒）
+  resourceLock: "endpoints"               # 使用 endpoints 作为资源锁
+schedulerName: "default-scheduler"         # 调度器名称
+healthzBindAddress: "0.0.0.0:10251"       # 健康检查绑定地址
+metricsBindAddress: "0.0.0.0:10251"       # 指标暴露地址
+featureGates:
+  EnableEquivalenceClassCache: true       # 启用等价类缓存
+  EnablePodPriority: true                 # 启用 Pod 优先级
+extender:
+  - url: "http://localhost:8080/filter"    # 外部扩展服务 URL
+    filterVerb: "filter"                  # 过滤动作用于候选节点过滤
+    prioritizeVerb: "prioritize"          # 优先级动作
+    weight: 2                             # 权重，决定该扩展插件的优先级
+podInitialBackoffSeconds: 1               # Pod 初始的重试时间（秒）
+podMaxBackoffSeconds: 10                  # Pod 最大重试时间（秒）
+percentageOfNodesToScore: 100             # 评估的节点比例
+unschedulablePodThreshold: 0             # 无法调度的 Pod 数量阈值
+nodeAffinity:
+  requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: "kubernetes.io/hostname"
+            operator: In
+            values:
+              - "node1"
+defaultScheduler: true                    # 标识为默认调度器
+policy:
+  activeDeadlineSeconds: 600              # 活动截止时间（秒）
+  preemptionPolicy: "PreemptLowerPriority" # 驱逐策略
+profiles:
+  - schedulerName: "default-scheduler"
+    plugins:
+      - name: "Filter"
+        weight: 10
+      - name: "Prioritize"
+        weight: 20
