@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%5p [%t] - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- MyBatis logging configuration -->
+        <Logger name="com.demo.dao.ActorMapper" level="DEBUG"/>
+        <Logger name="com.demo.dao" level="DEBUG"/>
+        <Root level="ERROR">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

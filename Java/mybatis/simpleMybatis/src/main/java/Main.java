@@ -28,7 +28,8 @@ public class Main {
         try {
 
             Properties properties = new Properties();
-            properties.setProperty("driver", "com.mysql.jdbc.Driver");
+            // Updated driver class name for mysql-connector-j 9.x (replaces com.mysql.jdbc.Driver)
+            properties.setProperty("driver", "com.mysql.cj.jdbc.Driver");
             properties.setProperty("url", "jdbc:mysql://127.0.0.1:3306/a");
             properties.setProperty("username", "root");
             properties.setProperty("password", "root");
