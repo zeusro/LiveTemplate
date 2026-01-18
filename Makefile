@@ -1,6 +1,6 @@
-now := $(shell date)
+now := $(shell date +"%Y-%m-%d %H:%M:%S %Z")
 
 auto_commit:
 	git add .
-	git commit -am "$(now)"
+	git commit -am "Update: $(now)"
 	git push
