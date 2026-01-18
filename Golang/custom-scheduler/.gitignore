@@ -1,0 +1,7 @@
+# Ignore compiled binaries
+/custom-scheduler
+custom-scheduler
+*.exe
+*.dll
+*.so
+*.dylib
