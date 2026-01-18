@@ -1,7 +1,6 @@
 import com.demo.B;
 import com.demo.BMapper;
 import com.google.gson.Gson;
-import com.sun.prism.impl.Disposer;
 import org.apache.ibatis.datasource.pooled.PooledDataSourceFactory;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.Environment;
