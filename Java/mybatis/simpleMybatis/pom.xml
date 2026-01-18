@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.3.30.RELEASE</version>
+            <version>6.1.20</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
         <!-- Updated from 1.8.13 to 1.9.22.1 for security fixes -->
