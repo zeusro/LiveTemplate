@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package asr;
+
+option go_package = "call/pb";
+
+// ASR 服务
+service ASRService {
+  // 处理音频流
+  rpc ProcessAudioStream(stream AudioChunk) returns (stream ASRResult);
+  // 处理单个音频块
+  rpc ProcessAudio(AudioChunk) returns (ASRResult);
+  // 创建会话
+  rpc CreateSession(SessionRequest) returns (SessionResponse);
+  // 关闭会话
+  rpc CloseSession(SessionRequest) returns (SessionResponse);
+  // 获取会话状态
+  rpc GetSessionStatus(SessionRequest) returns (SessionStatus);
+}
+
+// 音频数据块
+message AudioChunk {
+  string session_id = 1;
+  bytes audio_data = 2;
+  int64 timestamp = 3;
+  bool is_final = 4;
+}
+
+// ASR 识别结果
+message ASRResult {
+  string session_id = 1;
+  string text = 2;
+  double confidence = 3;
+  int64 timestamp = 4;
+  bool is_final = 5;
+}
+
+// 会话请求
+message SessionRequest {
+  string session_id = 1;
+  string call_id = 2;
+  string phone_number = 3;
+}
+
+// 会话响应
+message SessionResponse {
+  string session_id = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+// 会话状态
+message SessionStatus {
+  string session_id = 1;
+  string call_id = 2;
+  string phone_number = 3;
+  string status = 4;
+  int32 audio_chunks = 5;
+  string result = 6;
+  int64 created_at = 7;
+  int64 updated_at = 8;
+}

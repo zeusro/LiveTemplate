@@ -1,0 +1,58 @@
+Name: asr-service
+Host: 0.0.0.0
+Port: 8080
+Mode: dev
+
+# Redis 配置
+Redis:
+  Host: 127.0.0.1:6379
+  Pass: ""
+  DB: 0
+  PoolSize: 100
+  MinIdleConns: 10
+
+# gRPC 配置
+Rpc:
+  ListenOn: 0.0.0.0:9090
+  Timeout: 3000
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: asr.rpc
+
+# WebSocket 配置
+WebSocket:
+  ReadBufferSize: 4096
+  WriteBufferSize: 4096
+  CheckOrigin: true
+  HandshakeTimeout: 10s
+
+# ASR 服务配置
+ASR:
+  MaxConcurrentSessions: 1000
+  SessionTimeout: 300s
+  AudioBufferSize: 8192
+  MaxMessageSize: 10485760  # 10MB
+
+# 流控配置
+RateLimit:
+  QPS: 100
+  Burst: 200
+
+# 回调配置
+Callback:
+  Timeout: 5s
+  RetryTimes: 3
+  RetryInterval: 1s
+  Endpoints:
+    - http://localhost:8081/callback
+
+# 日志配置
+Log:
+  ServiceName: asr-service
+  Mode: file
+  Path: logs
+  Level: info
+  Compress: true
+  KeepDays: 7
+  StackCooldownMillis: 100
