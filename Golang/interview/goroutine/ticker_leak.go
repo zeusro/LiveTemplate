@@ -1,4 +1,4 @@
-package main
+package goroutine
 
 import (
 	"fmt"
@@ -101,7 +101,8 @@ func correctTimerExample() {
 	// time.After 会自动清理，不需要手动停止
 }
 
-func main() {
+// RunTickerLeakExamples 演示本文件中的正确用法示例。
+func RunTickerLeakExamples() {
 	// 演示错误示例（注释掉以避免实际泄漏）
 	// tickerLeakExample()
 	// multipleTickerLeak()

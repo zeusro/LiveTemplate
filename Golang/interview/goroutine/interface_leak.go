@@ -1,4 +1,4 @@
-package main
+package goroutine
 
 import (
 	"fmt"
@@ -145,7 +145,8 @@ func correctMinimalInterface() {
 	}
 }
 
-func main() {
+// RunInterfaceLeakExamples 演示本文件中的正确用法示例。
+func RunInterfaceLeakExamples() {
 	// 演示错误示例（注释掉以避免实际泄漏）
 	// interfaceLeakExample()
 	// interfaceSliceLeak()

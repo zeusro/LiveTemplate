@@ -1,4 +1,4 @@
-package main
+package goroutine
 
 import (
 	"fmt"
@@ -115,7 +115,8 @@ func correctExplicitCleanup() {
 	}
 }
 
-func main() {
+// RunGlobalReferenceLeakExamples 演示本文件中的正确用法示例。
+func RunGlobalReferenceLeakExamples() {
 	// 演示错误示例（注释掉以避免实际泄漏）
 	// globalMapLeak()
 	// globalSliceLeak()

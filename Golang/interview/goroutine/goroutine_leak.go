@@ -1,4 +1,4 @@
-package main
+package goroutine
 
 import (
 	"fmt"
@@ -72,7 +72,8 @@ func correctGoroutineExample() {
 	close(done)
 }
 
-func main() {
+// RunGoroutineLeakExamples 演示本文件中的正确用法示例。
+func RunGoroutineLeakExamples() {
 	// 演示错误示例（注释掉以避免实际泄漏）
 	// goroutineLeakExample()
 	// multipleGoroutineLeak()

@@ -1,4 +1,4 @@
-package main
+package goroutine
 
 import (
 	"fmt"
@@ -114,7 +114,8 @@ func correctSliceTruncate() {
 	largeSlice = append([]int(nil), largeSlice[:10]...)
 }
 
-func main() {
+// RunSliceLeakExamples 演示本文件中的正确用法示例。
+func RunSliceLeakExamples() {
 	// 演示错误示例（注释掉以避免实际泄漏）
 	// sliceLeakExample()
 	// result := getFirstN(10)

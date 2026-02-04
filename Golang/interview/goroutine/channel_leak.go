@@ -1,4 +1,4 @@
-package main
+package goroutine
 
 import (
 	"fmt"
@@ -124,7 +124,8 @@ func correctChannelWithTimeout() {
 	time.Sleep(2 * time.Second)
 }
 
-func main() {
+// RunChannelLeakExamples 演示本文件中的正确用法示例。
+func RunChannelLeakExamples() {
 	// 演示错误示例（注释掉以避免实际泄漏）
 	// senderChannelLeak()
 	// receiverChannelLeak()
